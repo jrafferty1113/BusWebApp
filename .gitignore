@@ -1,10 +1,14 @@
 # Compiled Source #
 ###################
+logs
+target
+/RUNNING_PID
 /logs
 /project/project
 /project/target
 /target
 /*.iml
+/.sbtserver
 /.idea
 /.idea_modules
 /.settings
