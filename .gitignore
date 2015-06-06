@@ -1,5 +1,15 @@
 # Compiled Source #
 ###################
+/logs
+/project/project
+/project/target
+/target
+/*.iml
+/.idea
+/.idea_modules
+/.settings
+/db.h2.db
+/testdb.h2.db
 
 # Packages #
 ############
@@ -14,4 +24,6 @@
 
 # IDE files #
 #############
-
+.project
+.target
+.classpath
