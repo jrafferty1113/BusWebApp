@@ -8,7 +8,7 @@ target
 /project/target
 /target
 /*.iml
-/.sbtserver
+/project/.sbtserver
 /.idea
 /.idea_modules
 /.settings
