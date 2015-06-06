@@ -1,4 +1,4 @@
-name := """play-java-spring"""
+name := """BusWebApp"""
 
 version := "1.0-SNAPSHOT"
 
