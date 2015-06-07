@@ -7,10 +7,12 @@ import models.bus.Agency;
 public interface AgencyService {
 
 	/*
-	 * Download list of agencies from 3rd-party
-	 * For now we only focus on California North
+	 * If we don't have agency list in db, then
+	 * download list of agencies from 3rd-party
 	 */
-	public void updateAgenciesByRegion(String region);
+	public void loadAgencies();
+	
+	public void loadAgenciesByRegion(String region);
 	
 	/*
 	 * Return all agencies stored
@@ -22,8 +24,6 @@ public interface AgencyService {
 	public void addAgency(List<Agency> list);
 	
 	public void addAgency(Agency agency);
-
-	
 	
 	public void removeAgencyByRegion(String region);
 }

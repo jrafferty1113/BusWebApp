@@ -30,24 +30,29 @@ public class AgencyServiceImpl implements AgencyService {
 	private ExternalCallService externalCallService;
 	
 	@Override
-	public void updateAgenciesByRegion(String region) {
-
+	public void loadAgencies() {
+		List<Agency> list = getAllAgencies();
+		if (list.size() != 0) return;
+		
 		Document agencyList = externalCallService.getAgencyListXml();
 		NodeList nl = agencyList.getElementsByTagName("body").item(0).getChildNodes();
-		List<Agency> list = new ArrayList<Agency>();
+		list = new ArrayList<Agency>();
 		
 		for (int i = 0; i < nl.getLength(); i++) {
 			
-			if (nl.item(i).getNodeName().equals("agency") && nl.item(i).getAttributes().getNamedItem("regionTitle").getNodeValue().equals(region)) {
+			if (nl.item(i).getNodeName().equals("agency")) {
 				list.add(new Agency(nl.item(i).getAttributes().getNamedItem("tag").getNodeValue(), nl.item(i).getAttributes().getNamedItem("regionTitle").getNodeValue()));
 			}		
 		}
-		
-		
-		removeAgencyByRegion(region);
 		addAgency(list);
+	}
+	
+	@Override
+	public void loadAgenciesByRegion(String region) {
+		List<Agency> list = getAgenciesByRegion(region);
+		if (list.size() != 0) return;
 		
-		
+		loadAgencies();
 	}
 	
 	@Override
@@ -59,25 +64,19 @@ public class AgencyServiceImpl implements AgencyService {
 	
 	@Override
 	public void removeAgencyByRegion(String region) {
-		int cnt = em.createQuery("DELETE FROM Agency WHERE regionTitle=\'" +region + "\'").executeUpdate();
-		play.Logger.error(cnt + " deleted");
+		em.createQuery("DELETE FROM Agency WHERE regionTitle=\'" +region + "\'").executeUpdate();
 	}
 	
 	@Override
 	public List<Agency> getAgenciesByRegion(String region) {
-		play.Logger.error("Trying to get agencies");
 		CriteriaQuery<Agency> c = em.getCriteriaBuilder().createQuery(Agency.class);
-		play.Logger.error("Trying to get agencies still");
-        c.from(Agency.class);
+		c.from(Agency.class);
         
-        play.Logger.error("Finally you asshole");
-        return em.createQuery(c).setParameter("regionTitle", region).getResultList();
-        
+		return em.createQuery(c).setParameter("regionTitle", region).getResultList();
 	}
 
 	@Override
 	public List<Agency> getAllAgencies() {
-		play.Logger.error("Trying to get agencies");
 		CriteriaQuery<Agency> c = em.getCriteriaBuilder().createQuery(Agency.class);
         c.from(Agency.class);
         List<Agency> list = em.createQuery(c).getResultList();
@@ -89,7 +88,4 @@ public class AgencyServiceImpl implements AgencyService {
 		em.persist(agency);
 		
 	}
-
-	
-
 }

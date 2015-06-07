@@ -6,6 +6,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import models.bus.Direction;
+import models.bus.Route;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -55,20 +56,29 @@ public class StopGraphTest {
 	
 	public static void main(String[] arg) {
 		System.out.println("Test");
-		Document xml = XmlHandler.getXml("test/resources/Route38.xml");
+//		Document xml = XmlHandler.getXml("test/resources/Route38.xml");
+		Document xml = XmlHandler.getXml("test/resources/RouteConfig-sf-muni.xml");
 		NodeList nl = xml.getElementsByTagName("body").item(0).getChildNodes();
+		
+		Set<Route> routes = new HashSet<Route>();
+		
 		for (int i = 0; i < nl.getLength(); i++) {
 			if (nl.item(i).getNodeName().equals("route")) {
 				
 				NamedNodeMap attributes = nl.item(i).getAttributes();
-				System.out.println(attributes.getNamedItem("tag")); // 38
-				System.out.println(attributes.getNamedItem("title")); // 38-Geary
+				Route r = new Route();
 				
+				r.setTag(attributes.getNamedItem("tag").getNodeValue());
+				r.setTitle(attributes.getNamedItem("title").getNodeValue());
+				r.setLatMax(Double.valueOf(attributes.getNamedItem("latMax").getNodeValue()));
+				r.setLatMin(Double.valueOf(attributes.getNamedItem("latMin").getNodeValue()));
+				r.setLonMax(Double.valueOf(attributes.getNamedItem("lonMax").getNodeValue()));
+				r.setLonMin(Double.valueOf(attributes.getNamedItem("lonMin").getNodeValue()));
 				
+				routes.add(r);
 			}
-			System.out.println("i=" + i);
 		}
-		System.out.println(nl.item(1));
+
 		
 	}
 	
