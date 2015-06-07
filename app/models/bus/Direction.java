@@ -1,9 +1,9 @@
 package models.bus;
 
-import java.util.Set;
+import java.util.List;
 
 public class Direction {
-	public Set<Stop> getStops() {
+	public List<Stop> getStops() {
 		return null;
 	}
 }
