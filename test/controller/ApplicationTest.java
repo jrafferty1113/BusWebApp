@@ -1,3 +1,4 @@
+package controller;
 import models.Bar;
 import org.junit.Test;
 import play.data.Form;
