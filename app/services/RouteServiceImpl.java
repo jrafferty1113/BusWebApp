@@ -30,43 +30,8 @@ public class RouteServiceImpl implements RouteService {
 	private ExternalCallService externalCallService;
 	
 	@Override
-	public List<Route> getAllRoutes() {
-		// "California-Northern"
-		Document routeList = externalCallService.getRouteListXml();
-		NodeList nl = routeList.getElementsByTagName("body").item(0).getChildNodes();
-		List<Route> list = new ArrayList<Route>();
-		
-		for (int i = 0; i < nl.getLength(); i++) {
-			
-			if (nl.item(i).getNodeName().equals("route") ) {
-				list.add(new Route(nl.item(i).getAttributes().getNamedItem("tag").getNodeValue(), nl.item(i).getAttributes().getNamedItem("title").getNodeValue()));
-			}		
-		}
-		return list;
-	}
-	
-	@Override
-	public void addRoute(List<Route> list) {
-		for (Route a: list) {
-			em.persist(a);
-		}
-	}
-	
-	@Override
 	public void loadRoutes() {
 		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void removeRoute(String region) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void addRoute(Route route) {
-	// TODO Auto-generated method stub
 		
 	}
 
@@ -111,15 +76,41 @@ public class RouteServiceImpl implements RouteService {
 //		}
 		return list;
 	}
+	
+	@Override
+	public List<Route> getAllRoutes() {
+		// "California-Northern"
+		Document routeList = externalCallService.getRouteListXml();
+		NodeList nl = routeList.getElementsByTagName("body").item(0).getChildNodes();
+		List<Route> list = new ArrayList<Route>();
+		
+		for (int i = 0; i < nl.getLength(); i++) {
+			
+			if (nl.item(i).getNodeName().equals("route") ) {
+				list.add(new Route(nl.item(i).getAttributes().getNamedItem("tag").getNodeValue(), nl.item(i).getAttributes().getNamedItem("title").getNodeValue()));
+			}		
+		}
+		return list;
+	}
+	
+	@Override
+	public void addRoute(List<Route> list) {
+		for (Route a: list) {
+			em.persist(a);
+		}
+	}
+	
 
 	@Override
-	public void updateRoutes() {
-		// TODO Auto-generated method stub
+	public void addRoute(Route route) {
+	// TODO Auto-generated method stub
 		
 	}
 
-
-	
-
+	@Override
+	public void removeRoute(String region) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

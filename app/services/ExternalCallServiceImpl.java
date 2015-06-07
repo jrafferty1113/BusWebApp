@@ -26,8 +26,8 @@ public class ExternalCallServiceImpl implements ExternalCallService {
 	}
 	
 	@Override
-	public Document getRouteListXml() {
-		Promise<WSResponse> responsePromise = WS.url(Play.application().configuration().getString("nextbus.routelist")).get();
+	public Document getRouteListXml(String agency) {
+		Promise<WSResponse> responsePromise = WS.url(Play.application().configuration().getString("nextbus.routelist") + "&a=" + agency).get();
 		play.Logger.info("Getting Route List from" + Play.application().configuration().getString("nextbus.routelist"));
 		return responsePromise.get(Play.application().configuration().getInt("external.timeout")).asXml();
 	}

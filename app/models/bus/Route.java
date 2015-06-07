@@ -1,6 +1,7 @@
 package models.bus;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 
@@ -8,6 +9,9 @@ import javax.persistence.Id;
 @Entity
 public class Route {
 	@Id
+	@GeneratedValue
+    public String id;
+	private String agency;
 	private String tag;
 	private String title;
 	private double latMax;
@@ -24,6 +28,14 @@ public class Route {
 		this.title=title;
 	}
 	
+	public String getAgency() {
+		return agency;
+	}
+
+	public void setAgency(String agency) {
+		this.agency = agency;
+	}
+
 	public String getTag() {
 		return tag;
 	}

@@ -1,11 +1,14 @@
 package models.bus;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class Agency {
 	@Id
+	@GeneratedValue
+    public String id;
 	public String tag;
 	public String regionTitle;
 	
