@@ -31,3 +31,4 @@ target
 .project
 .target
 .classpath
+/bin/
