@@ -8,6 +8,7 @@ import play.libs.Json;
 import play.mvc.Result;
 import services.BarService;
 import views.html.index;
+import views.html.map;
 
 @org.springframework.stereotype.Controller
 public class Application {
@@ -28,6 +29,10 @@ public class Application {
 
     public Result listBars() {
         return play.mvc.Controller.ok(Json.toJson(barService.getAllBars()));
+    }
+    
+    public Result map() {
+    	return play.mvc.Controller.ok(map.render());
     }
     
 }
