@@ -6,7 +6,7 @@ public class Stop {
 	@Id
 	String stopId;
 	String name;
-	String tag;
+	public String tag;
 	private double lon;
 	private double lat;
 	

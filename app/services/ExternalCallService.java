@@ -7,5 +7,6 @@ public interface ExternalCallService {
 	
 	public Document getRouteListXml(String agency);
 	
-	public Document getRouteConfigXml();
+	public Document getRouteConfigXml(String agency, String route);
+
 }
