@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 
+
 @Entity
 public class Route {
 	@Id
@@ -70,4 +71,6 @@ public class Route {
 	public void setLonMin(double lonMin) {
 		this.lonMin = lonMin;
 	}
+	
+	
 }

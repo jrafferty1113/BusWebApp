@@ -1,8 +1,30 @@
 package models.bus;
 
+import javax.persistence.Id;
+
 public class Stop {
+	@Id
+	String stopId;
+	String name;
+	String tag;
 	private double lon;
 	private double lat;
+	
+	public Stop(String tag1, String stopId1, String lat1, String lon1, String name1) {
+		this.tag = tag1;
+		this.stopId = stopId1;
+		this.lat = Double.valueOf(lat1);
+		this.lon = Double.valueOf(lon1);
+		this.name = name1;
+	}
+	
+	public Stop() {
+		
+	}
+	
+	public Stop(String tag1) {
+		this.tag = tag1;
+	}
 	
 	public Stop(double lon, double lat) {
 		this.lon = lon;
@@ -24,4 +46,5 @@ public class Stop {
 	public double getLatitude() {
 		return lat;
 	}
+	
 }

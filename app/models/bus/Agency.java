@@ -17,4 +17,6 @@ public class Agency {
 		this.tag=t;
 		this.regionTitle=rT;
 	}
+	
+	
 }
