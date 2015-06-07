@@ -1,5 +1,6 @@
 package services;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
 
@@ -11,13 +12,30 @@ import play.libs.ws.WSResponse;
 
 @Service
 public class ExternalCallServiceImpl implements ExternalCallService {
-	private WSClient ws = WS.client();
-	private String urlAgencyList = Play.application().configuration().getString("nextbus.agencylist");
-	private int timeout = Play.application().configuration().getInt("external.timeout");
+//	private WSClient ws = WS.client();
+	
+//	@Autowired
+//	private WSClient ws;
+	
 	
 	@Override
 	public Document getAgencyListXml() {
-		Promise<WSResponse> responsePromise = ws.url(urlAgencyList).get();	
-		return responsePromise.get(timeout).asXml();
+		Promise<WSResponse> responsePromise = WS.url(Play.application().configuration().getString("nextbus.agencylist")).get();
+		play.Logger.info("Getting Agency List from" + Play.application().configuration().getString("nextbus.agencylist"));
+		return responsePromise.get(Play.application().configuration().getInt("external.timeout")).asXml();
+	}
+	
+	@Override
+	public Document getRouteListXml() {
+		Promise<WSResponse> responsePromise = WS.url(Play.application().configuration().getString("nextbus.routelist")).get();
+		play.Logger.info("Getting Route List from" + Play.application().configuration().getString("nextbus.routelist"));
+		return responsePromise.get(Play.application().configuration().getInt("external.timeout")).asXml();
+	}
+	
+	@Override
+	public Document getRouteConfigXml() {
+		Promise<WSResponse> responsePromise = WS.url(Play.application().configuration().getString("nextbus.routeconfig")).get();
+		play.Logger.info("Getting Route List from" + Play.application().configuration().getString("nextbus.routeconfig"));
+		return responsePromise.get(Play.application().configuration().getInt("external.timeout")).asXml();
 	}
 }

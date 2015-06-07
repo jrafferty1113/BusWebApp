@@ -1,6 +1,8 @@
 package controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
+import play.libs.Json;
 import play.mvc.Result;
 import services.AgencyService;
 
@@ -10,8 +12,8 @@ public class UpdateBusGraphController {
 	private AgencyService agencyService;
 	
 	public Result test() {
-		agencyService.updateAgenciesCalNorth();
-		return null;
+		agencyService.getAgenciesByRegion("California-Northern");
+		return play.mvc.Controller.ok(Json.toJson(agencyService.getAllAgencies()));
 	}
 	
 }

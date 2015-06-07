@@ -7,7 +7,14 @@ import javax.persistence.Id;
 public class Agency {
 	@Id
 	public String tag;
-	public String title;
-	public String shortTitle;
 	public String regionTitle;
+	
+	public Agency() {
+		
+	}
+	
+	public Agency(String t, String rT) {
+		this.tag=t;
+		this.regionTitle=rT;
+	}
 }
