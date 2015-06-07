@@ -1,5 +1,9 @@
+package models;
+
+import base.TestDataConfig;
 import configs.AppConfig;
 import models.Bar;
+
 import org.junit.Test;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;

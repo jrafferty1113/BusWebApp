@@ -1,9 +1,13 @@
+package services;
+import base.TestDataConfig;
 import configs.AppConfig;
 import models.Bar;
+
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
+
 import services.BarService;
 
 import java.util.List;

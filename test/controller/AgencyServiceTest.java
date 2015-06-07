@@ -1,4 +1,6 @@
+package controller;
 
+import base.TestDataConfig;
 import configs.DataConfig;
 import configs.AppConfig;
 import models.Bar;
@@ -26,9 +28,6 @@ public class AgencyServiceTest extends AbstractTransactionalJUnit4SpringContextT
 
     @Test
     public void createAgency() {
-        
-        
-        
         agencyService.addAgency(new Agency("Dick","Home"));
         agencyService.addAgency(new Agency("Jasper","Cornbuckles"));
         agencyService.addAgency(new Agency("Hans","Van Der Eng"));
