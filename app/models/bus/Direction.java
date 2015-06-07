@@ -1,5 +1,5 @@
 package models.bus;
 
-public class DIrection {
+public class Direction {
 
 }
