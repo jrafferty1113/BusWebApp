@@ -80,7 +80,8 @@ public class RouteServiceImpl implements RouteService {
 	@Override
 	public List<Route> getAllRoutes() {
 		// "California-Northern"
-		Document routeList = externalCallService.getRouteListXml();
+		// TODO
+		Document routeList = externalCallService.getRouteListXml(null);
 		NodeList nl = routeList.getElementsByTagName("body").item(0).getChildNodes();
 		List<Route> list = new ArrayList<Route>();
 		

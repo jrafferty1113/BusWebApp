@@ -3,6 +3,8 @@ package models.path;
 import play.Play;
 
 public class GeoUtil {
+	private GeoUtil() {}
+	
 	public static final double walkSpeed = Play.application().configuration().getDouble("geo.walkspeed"); // m/s
 	public static final double busSpeed = Play.application().configuration().getDouble("geo.busspeed"); // m/s
 	public static final double walkTime = Play.application().configuration().getDouble("geo.walktime");

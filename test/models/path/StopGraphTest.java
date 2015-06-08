@@ -10,15 +10,14 @@ import models.bus.Route;
 
 import org.junit.Before;
 import org.junit.Test;
+import static org.junit.Assert.assertTrue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import services.RouteService;
 import util.XmlHandler;
-import static org.fest.assertions.Assertions.assertThat;
 
 public class StopGraphTest {
 	private StopGraph g;
@@ -51,13 +50,14 @@ public class StopGraphTest {
 		ts.add(new StopNode(2, 2)); // 8
 		ts.add(new StopNode(3, 2)); // 13
 		ts.add(new StopNode(0, 0)); // 0
-		assertThat(ts.subSet(new StopNode(2, 2), true, new StopNode(3, 2), true).size() == 2);
+		assertTrue(ts.subSet(new StopNode(2, 2), true, new StopNode(3, 2), true).size() == 2);
 	}
 	
 	public static void main(String[] arg) {
 		System.out.println("Test");
 //		Document xml = XmlHandler.getXml("test/resources/Route38.xml");
-		Document xml = XmlHandler.getXml("test/resources/RouteConfig-sf-muni.xml");
+//		Document xml = XmlHandler.getXml("test/resources/RouteConfig-sf-muni.xml");
+		Document xml = XmlHandler.getXml("test/resources/RouteList-sf-muni.xml");
 		NodeList nl = xml.getElementsByTagName("body").item(0).getChildNodes();
 		
 		Set<Route> routes = new HashSet<Route>();
@@ -70,10 +70,6 @@ public class StopGraphTest {
 				
 				r.setTag(attributes.getNamedItem("tag").getNodeValue());
 				r.setTitle(attributes.getNamedItem("title").getNodeValue());
-				r.setLatMax(Double.valueOf(attributes.getNamedItem("latMax").getNodeValue()));
-				r.setLatMin(Double.valueOf(attributes.getNamedItem("latMin").getNodeValue()));
-				r.setLonMax(Double.valueOf(attributes.getNamedItem("lonMax").getNodeValue()));
-				r.setLonMin(Double.valueOf(attributes.getNamedItem("lonMin").getNodeValue()));
 				
 				routes.add(r);
 			}
