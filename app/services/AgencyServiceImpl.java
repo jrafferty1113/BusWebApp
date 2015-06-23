@@ -1,5 +1,6 @@
 package services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -61,9 +62,18 @@ public class AgencyServiceImpl implements AgencyService {
 		// Call external url to get xml, then parse them
 		list = AgencyListHandler.parseAgencyListXml(externalCallService.getAgencyListXml());
 		
+		List<Agency> res = new ArrayList<Agency>();
+			
 		// Persist in db
 		addAgencies(list);
-        return list;    
+		
+		for (Agency a: list) {
+			if (a.regionTitle.equalsIgnoreCase(region)) {
+				res.add(a);
+			}
+		}
+		
+        return res;    
 	}
 
 	@Override
@@ -117,10 +127,12 @@ public class AgencyServiceImpl implements AgencyService {
 		Document xml = externalCallService.getRouteListXml(agency.tag);
 		list.addAll(AgencyListHandler.parseRouteListXml(xml, agency));
 		
-		
-		addRoutes(list);
-		
-        return list; 
+		if (list.size() != 0) {
+			addRoutes(list);    
+		} else {
+			play.Logger.error("AgencyService.getRoutesByAgency recevied empty list of agencies");
+		}
+		return list;
 	}
 
 	@Override

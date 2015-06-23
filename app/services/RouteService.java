@@ -15,11 +15,6 @@ import models.bus.Route;
 
 public interface RouteService {
 
-
-	public void loadRoutes();
-	public Set<Route> getRoutes(Document xml);
-	public Set<Direction> getDirections(Document xml);
-	
 	/*
 	 * Return all agencies stored
 	 */
@@ -28,7 +23,5 @@ public interface RouteService {
 	public void addRoute(List<Route> list);
 	
 	public void addRoute(Route route);
-	
-	public void removeRoute(String region);
 
 }
