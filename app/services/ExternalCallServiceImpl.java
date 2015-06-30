@@ -9,7 +9,6 @@ import play.libs.F.Promise;
 import play.libs.ws.WS;
 import play.libs.ws.WSClient;
 import play.libs.ws.WSResponse;
-import util.XmlHandler;
 
 @Service
 public class ExternalCallServiceImpl implements ExternalCallService {
